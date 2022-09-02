@@ -1,0 +1,21 @@
+.navigation {
+  display: flex;
+
+  height: 50px;
+  .logo_container {
+    width: 30px;
+    height: 30px;
+    background-color: white;
+  }
+  .navLinks {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  }
+}

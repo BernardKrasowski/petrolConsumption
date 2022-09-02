@@ -1,0 +1,16 @@
+.container-result {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .result {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    padding: 20px;
+    margin: 15px;
+  }
+  .result-btn {
+    display: flex;
+  }
+}
