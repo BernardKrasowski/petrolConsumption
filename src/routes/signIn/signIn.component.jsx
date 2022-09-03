@@ -1,13 +1,18 @@
 import { signInWithGooglePopup } from "../../utils/firebase/firebase.utils";
 import { createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils";
+import GoogleIcon from "@mui/icons-material/Google";
+
+import "./signIn.styles.scss";
 const SignIn = () => {
   const logGoogleUser = async () => {
     const { user } = await signInWithGooglePopup();
     const userDocRef = await createUserDocumentFromAuth(user);
   };
   return (
-    <div>
-      <button onClick={logGoogleUser}>sign in </button>
+    <div className="signIn">
+      <button className="signIn-googleBtn" onClick={logGoogleUser}>
+        {<GoogleIcon className="logo-google" />} Continue with Google
+      </button>
     </div>
   );
 };

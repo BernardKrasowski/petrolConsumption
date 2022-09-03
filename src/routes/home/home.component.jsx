@@ -46,7 +46,9 @@ function Home() {
       [name]: value,
     });
   };
-
+  const clearCurrentRsult = () => {
+    setCurrentResult("");
+  };
   return (
     <div className="home">
       <form onSubmit={handleSubmit} className="home-form">
@@ -89,7 +91,7 @@ function Home() {
         </Button>
       </form>
 
-      <ShowResult currentResult={currentResult} />
+      <ShowResult currentResult={currentResult} clear={clearCurrentRsult} />
     </div>
   );
 }

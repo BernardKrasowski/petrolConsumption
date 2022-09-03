@@ -1,26 +1,21 @@
-import Button from "../button/button.component";
 import "./showResult.styles.scss";
-
-const ShowResult = ({ currentResult }) => {
+import DeleteIcon from "@mui/icons-material/Delete";
+import SaveIcon from "@mui/icons-material/Save";
+const ShowResult = ({ currentResult, clear }) => {
   const handleSaveData = () => {
     console.log("save");
-  };
-  const handleDeleteData = () => {
-    console.log("delete");
   };
 
   return (
     <div className="container-result">
       <div className="result">
+        <button className="container-btn-save">
+          {<SaveIcon className="btnSave" />}
+        </button>
         <h1>{currentResult}</h1>
-      </div>
-      <div className="result-btn">
-        <Button buttonType="save" onClick={handleSaveData}>
-          Save
-        </Button>
-        <Button buttonType="delete" onClick={handleDeleteData}>
-          Delete
-        </Button>
+        <button onClick={clear} className="container-btn-delete">
+          <DeleteIcon className="btnDelete" />
+        </button>
       </div>
     </div>
   );

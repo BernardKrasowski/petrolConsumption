@@ -4,13 +4,33 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   .result {
     border-top: 2px solid black;
     border-bottom: 2px solid black;
     padding: 20px;
     margin: 15px;
-  }
-  .result-btn {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba($color: #555151, $alpha: 1);
+    .container-btn-save,
+    .container-btn-delete {
+      background-color: white;
+      border: none;
+      height: 200px;
+      width: 200px;
+      .btnSave,
+      .btnDelete {
+        height: 80px;
+        width: 80px;
+      }
+      .btnSave {
+        color: green;
+      }
+      .btnDelete {
+        color: red;
+      }
+    }
   }
 }
