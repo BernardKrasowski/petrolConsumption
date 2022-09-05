@@ -7,7 +7,15 @@ import {
   signOut,
 } from "firebase/auth";
 
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  getDocFromCache,
+  getDocs,
+  collection,
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDXPiNR6lk1KuLTHrvNx6_-dovXE4hlM5I",
@@ -53,7 +61,32 @@ export const createUserDocumentFromAuth = async (userAuth) => {
   }
   return userDocRef;
 };
+// ADD data to user
+export const addDataToUser = async (dataToAdd, index) => {
+  if (!dataToAdd) return;
+
+  const userRef = auth.currentUser.uid;
+  const ref = doc(db, `users/${userRef}/data`, index);
+  await setDoc(ref, dataToAdd);
+};
+
+// GET data from user
+
+export const getDataFromUser = async () => {
+  // const userDocRef = doc(db, "users", auth.currentUser.uid);
+  if (!auth.currentUser) return;
+  const userSnapshot = await getDocs(
+    collection(db, `users/${auth.currentUser.uid}/data`)
+  );
+  const historyList = [];
+  userSnapshot.forEach((doc) => {
+    return historyList.push(doc.data());
+  });
+  return historyList;
+};
+// listener set on auth
 export const onAuthStateChangedListener = (callback) => {
   return onAuthStateChanged(auth, callback);
 };
+
 export const signOutUser = async () => await signOut(auth);

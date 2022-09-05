@@ -11,7 +11,7 @@ import { onAuthStateChangedListener } from "./utils/firebase/firebase.utils";
 import { useDispatch } from "react-redux";
 import { createUserDocumentFromAuth } from "./utils/firebase/firebase.utils";
 import { createAction } from "./store/user/user.action";
-import { store } from "./store/store";
+
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {

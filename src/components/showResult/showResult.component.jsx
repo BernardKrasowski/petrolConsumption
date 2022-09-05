@@ -1,18 +1,26 @@
 import "./showResult.styles.scss";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SaveIcon from "@mui/icons-material/Save";
+import { addDataToUser } from "../../utils/firebase/firebase.utils";
+
 const ShowResult = ({ currentResult, clear }) => {
-  const handleSaveData = () => {
-    console.log("save");
+  const handleSaveData = async (e) => {
+    e.preventDefault();
+    const dateObj = new Date();
+    const index = `${dateObj.getDate()}${dateObj.getMonth()}${dateObj.getFullYear()}${dateObj.getHours()}${dateObj.getMinutes()}${dateObj.getSeconds()}`;
+
+    const dataToSend = { rate: currentResult, date: new Date() };
+
+    await addDataToUser(dataToSend, index);
   };
 
   return (
     <div className="container-result">
       <div className="result">
-        <button className="container-btn-save">
+        <button className="container-btn-save" onClick={handleSaveData}>
           {<SaveIcon className="btnSave" />}
         </button>
-        <h1>{currentResult}</h1>
+        <h1>{currentResult} l/km</h1>
         <button onClick={clear} className="container-btn-delete">
           <DeleteIcon className="btnDelete" />
         </button>
