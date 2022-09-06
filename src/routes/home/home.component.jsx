@@ -28,7 +28,10 @@ function Home() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (carMileageAfter < carMileageBefore) {
+    if (
+      carMileageAfter < carMileageBefore ||
+      carMileageAfter === carMileageBefore
+    ) {
       setFormFields(defaultFormFields);
       return alert("Wrong value car mileage");
     }

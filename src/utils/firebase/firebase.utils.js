@@ -12,7 +12,7 @@ import {
   doc,
   getDoc,
   setDoc,
-  getDocFromCache,
+  deleteDoc,
   getDocs,
   collection,
 } from "firebase/firestore";
@@ -65,6 +65,8 @@ export const createUserDocumentFromAuth = async (userAuth) => {
 export const addDataToUser = async (dataToAdd, index) => {
   if (!dataToAdd) return;
 
+  if (!auth.currentUser) return;
+
   const userRef = auth.currentUser.uid;
   const ref = doc(db, `users/${userRef}/data`, index);
   await setDoc(ref, dataToAdd);
@@ -81,11 +83,21 @@ export const getDataFromUser = async () => {
 
   const historyList = [];
   userSnapshot.forEach((doc) => {
-    return historyList.push(doc.data());
+    const obj = {
+      id: doc.id,
+      data: doc.data(),
+    };
+    return historyList.push(obj);
   });
-  console.log(historyList); //date.nanoseconds
+
   return historyList;
 };
+// remove data from user
+export const removeDataFromUser = async (id) => {
+  if (!id) return;
+  await deleteDoc(doc(db, `users/${auth.currentUser.uid}/data/${id}`));
+};
+
 // listener set on auth
 export const onAuthStateChangedListener = (callback) => {
   return onAuthStateChanged(auth, callback);

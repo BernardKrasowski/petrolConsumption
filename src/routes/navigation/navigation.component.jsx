@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { getDataFromUser } from "../../utils/firebase/firebase.utils";
 import { useDispatch } from "react-redux";
-import { createAction } from "../../store/data/data.action";
+import { createActionData } from "../../store/data/data.action";
 function Navigation() {
   const currentUser = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
@@ -13,23 +13,25 @@ function Navigation() {
   const getData = async () => {
     const dataListHistory = await getDataFromUser();
     if (!dataListHistory) return;
-    dispatch(createAction(dataListHistory));
+    dispatch(createActionData(dataListHistory));
+  };
+
+  const signOut = () => {
+    signOutUser();
+    dispatch(createActionData({}));
   };
   return (
     <>
       <div className="navigation">
         <div className="logo_container"></div>
         <div className="navLinks">
-          <Link to="/">Home</Link>
-          <Link to="/history" onClick={getData}>
-            History
-          </Link>
+          <Link to="/" className="homeIcon"></Link>
+          <Link to="/history" onClick={getData} className="historyIcon"></Link>
+
           {currentUser ? (
-            <Link to="/" onClick={signOutUser}>
-              Sign Out
-            </Link>
+            <Link to="/" onClick={signOut} className="signOutIcon"></Link>
           ) : (
-            <Link to="/auth">Sign in</Link>
+            <Link to="/auth" className="signInIcon"></Link>
           )}
         </div>
       </div>

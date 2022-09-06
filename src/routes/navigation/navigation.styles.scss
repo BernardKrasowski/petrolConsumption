@@ -17,5 +17,37 @@
       text-decoration: none;
       color: black;
     }
+    .historyIcon {
+      height: 50px;
+      width: 50px;
+      background-image: url("../../icons/historyIcon.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    .homeIcon {
+      height: 50px;
+      width: 50px;
+      background-image: url("../../icons/homeIcon.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    .signOutIcon {
+      height: 50px;
+      width: 50px;
+      background-image: url("../../icons/signOutIcon.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    .signInIcon {
+      height: 50px;
+      width: 50px;
+      background-image: url("../../icons/signInIcon.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
   }
 }

@@ -10,7 +10,7 @@ import SignIn from "./routes/signIn/signIn.component";
 import { onAuthStateChangedListener } from "./utils/firebase/firebase.utils";
 import { useDispatch } from "react-redux";
 import { createUserDocumentFromAuth } from "./utils/firebase/firebase.utils";
-import { createAction } from "./store/user/user.action";
+import { createActionUser } from "./store/user/user.action";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ function App() {
       if (user) {
         createUserDocumentFromAuth(user);
       }
-      dispatch(createAction(user));
+      dispatch(createActionUser(user));
     });
     return unsubscribe;
   }, [dispatch]);
