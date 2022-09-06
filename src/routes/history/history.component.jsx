@@ -1,21 +1,29 @@
 import MileageBall from "../../components/mileageBall/mileageBall.component";
 import { useSelector } from "react-redux";
 import { selectCurrentData } from "../../store/data/data.selecotr";
-import { useEffect, useState } from "react";
-
+import "./history.styles.scss";
 const History = () => {
-  const [hisDat, setHisDat] = useState();
-  const historyData = useSelector(selectCurrentData);
-  useEffect(() => {
-    setHisDat(historyData);
-  }, [historyData]);
+  const handleRemoveBall = (e) => {
+    console.log(e.target);
+    e.target.parentNode.remove();
+  };
 
+  const historyData = useSelector(selectCurrentData);
   return (
     <div className="history">
-      {/* {hisDat ? hisDat.map((data) => <MileageBall currentData={data} />) : null} */}
+      <div className="history-mileageBall">
+        {historyData.map((data) => (
+          <MileageBall
+            key={data.date.seconds}
+            currentData={data}
+            seconds={data.date.seconds}
+            handleRemoveBall={handleRemoveBall}
+          />
+        ))}
+      </div>
     </div>
   );
 };
 export default History;
 
-/// redux persist and redux storage  - middlewares for protect store browser refresh
+/// redux persist  - middlewares for protect store browser refresh

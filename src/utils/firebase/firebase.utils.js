@@ -78,10 +78,12 @@ export const getDataFromUser = async () => {
   const userSnapshot = await getDocs(
     collection(db, `users/${auth.currentUser.uid}/data`)
   );
+
   const historyList = [];
   userSnapshot.forEach((doc) => {
     return historyList.push(doc.data());
   });
+  console.log(historyList); //date.nanoseconds
   return historyList;
 };
 // listener set on auth
